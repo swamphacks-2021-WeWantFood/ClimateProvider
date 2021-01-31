@@ -48,7 +48,7 @@ namespace ClimateProvider
                 return new BadRequestObjectResult($"Failed to parse json body: {ex.Message}");
             }
 
-            if(!IsValidCityRequest(ref request))
+            if(request == null || !IsValidCityRequest(ref request))
             {
                 return new BadRequestObjectResult($"Bad request parameters.");
             }
