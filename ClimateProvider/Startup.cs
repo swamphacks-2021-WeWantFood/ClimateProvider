@@ -17,8 +17,10 @@ namespace ClimateProvider
         {
             // To hotswap implementations, simply change this line.
             // Alternatively, we could throw this in the config.
-            var noaaServiceType = typeof(Services.NOAADummyService);
-            builder.Services.AddSingleton(typeof(Services.INOAAService), noaaServiceType);
+
+
+           // var noaaServiceType = typeof(Services.NOAADummyService);
+           // builder.Services.AddSingleton(typeof(Services.INOAAService), noaaServiceType);
 
 
         }

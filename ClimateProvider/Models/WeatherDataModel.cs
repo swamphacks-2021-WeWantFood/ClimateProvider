@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClimateProvider.Models
 {
-    public record WeatherDataModel
+    public class WeatherDataModel
     {
         public string Location { get; set; }
         public double MaxTemp { get; set; }

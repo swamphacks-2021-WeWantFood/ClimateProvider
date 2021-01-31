@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClimateProvider.Models
 {   
-    public record TemperatureValueInfoModel
+    public class TemperatureValueInfoModel
     {
         /// <summary>
         /// Get or Set the Station ID of this object

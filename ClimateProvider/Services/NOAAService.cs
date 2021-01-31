@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ClimateProvider.Services
 {
-    record MetaData
+    class MetaData
     {
         public IEnumerable<TemperatureValueInfoModel> Results { get; set; }
     }

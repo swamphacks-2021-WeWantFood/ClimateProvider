@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClimateProvider.Models
 {
-    public record StationInfoModel
+    public class StationInfoModel
     {
         public DateTime MinDate { get; set; }
         public DateTime MaxDate { get; set; }

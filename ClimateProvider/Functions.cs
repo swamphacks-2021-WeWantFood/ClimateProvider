@@ -13,32 +13,16 @@ using System.Collections.Generic;
 
 namespace ClimateProvider
 {
-    /*
-     * Okay, so.. In c#, we don't have pointers obviously.
-     * And it's unlike Java in that not everything is automatically passed by-reference.
-     *
-     * There are two main *types* of data, **Structs* and **Classes**
-     *
-     * The difference being that structs are valuetypes - pass by-value, and classes are rerference types - pass by-reference.
-     *
-     * That's prboably the largest difference from c++ in terms of the language itself.
-     *  Obviously the libraries are different, but otherwise the syntax itself should be basically the same.
-     *
-     * C# does actually technically have pointers, but there's no _point_ (pun intended) in using them in most cases.
-     */
-    public static class Program
+    public static class Functions
     {
-
-        // I'm not actually sure if c++ has these, but these are attributes (decorators in java iirc)
-        // Basically they provide metadata of some kind on the level of classes/methods/functions/properties/etc.
-        // This specifically tells azure that this function should run when the user navigates to "ourwebsite/GetCities"
         [FunctionName("GetCities")]
-        public static async Task<IActionResult> RunCities(
+        public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-        ILogger log, INOAAService noaaService)
+        ILogger log)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
+            INOAAService noaaService = new Services.NOAADummyService();
             CitiesRequest request;
             try
             {
