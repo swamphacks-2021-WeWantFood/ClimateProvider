@@ -36,9 +36,7 @@ namespace ClimateProvider
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
         ILogger log)//, INOAAService noaaService)
         {
-
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
 
             CitiesRequest request;
             try
@@ -55,11 +53,12 @@ namespace ClimateProvider
                 return new BadRequestObjectResult($"Bad request parameters.");
             }
 
+            CitiesResponse response = null;
 
-            //  We'll poll the noaa service for data, do any kind of transformations necessary on it
-            // and spit it back out here.
+            // We'll poll the noaa service for data, do any kind of transformations necessary on it
+            // and fill-out the response appropriately
 
-            return new OkResult();
+            return new OkObjectResult(JsonConvert.SerializeObject(response));
         }
 
         private static bool IsValidCityRequest(ref CitiesRequest request)
