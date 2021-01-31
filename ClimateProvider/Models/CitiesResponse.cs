@@ -6,5 +6,6 @@ namespace ClimateProvider.Models
 {
     class CitiesResponse
     {
+        public IEnumerable<CityData> Cities { get; set; }
     }
 }

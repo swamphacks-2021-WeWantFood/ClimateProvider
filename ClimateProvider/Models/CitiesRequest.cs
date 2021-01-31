@@ -14,6 +14,6 @@ namespace ClimateProvider.Models
     {
         public double? Temperature { get; set; }
         public TemperatureScales Scale { get; set; }
-        public int Month { get; set; }
+        public DateTime Date { get; set; }
     }
 }

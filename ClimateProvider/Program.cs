@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ClimateProvider.Models;
 using ClimateProvider.Services;
+using System.Collections.Generic;
 
 namespace ClimateProvider
 {
@@ -34,7 +35,7 @@ namespace ClimateProvider
         [FunctionName("GetCities")]
         public static async Task<IActionResult> RunCities(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-        ILogger log)//, INOAAService noaaService)
+        ILogger log, INOAAService noaaService)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
@@ -55,18 +56,28 @@ namespace ClimateProvider
 
             CitiesResponse response = null;
 
-            // We'll poll the noaa service for data, do any kind of transformations necessary on it
-            // and fill-out the response appropriately
+            var data = await noaaService.GetWeatherData(request.Date, request.Date, request.Temperature.Value, true);
+
+            var resultList = new List<Models.CityData>();
+            foreach (var item in data)
+            {
+                resultList.Add(new CityData()
+                {
+                    Date = request.Date,
+                    HighTemperature = item.MaxTemp,
+                    Latitude = item.Latitude.ToString(),
+                    Longitude = item.Longitude.ToString(),
+                    LowTemperature = item.MinTemp,
+                    Name = item.Location,
+                });
+            }
+            response.Cities = resultList;
 
             return new OkObjectResult(JsonConvert.SerializeObject(response));
         }
 
         private static bool IsValidCityRequest(ref CitiesRequest request)
         {
-            if(request.Month < 1 || request.Month > 12)
-            {
-                return false;
-            }
             if (!request.Temperature.HasValue)
             {
                 return false;

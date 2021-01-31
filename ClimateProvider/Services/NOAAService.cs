@@ -8,19 +8,19 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClimateProvider
+namespace ClimateProvider.Services
 {
     record MetaData
     {
         public IEnumerable<TemperatureValueInfoModel> Results { get; set; }
     }
 
-    class NOAAServiceImpl : Services.INOAAService
+    class NOAAService : Services.INOAAService
     {
         private const string URL = "https://www.ncdc.noaa.gov/cdo-web/api/v2/";
         private readonly IConfiguration config;
 
-        public NOAAServiceImpl(IConfiguration config)
+        public NOAAService(IConfiguration config)
         {
             this.config = config;
         }

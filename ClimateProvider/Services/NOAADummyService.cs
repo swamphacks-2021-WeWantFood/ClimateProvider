@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClimateProvider
+namespace ClimateProvider.Services
 {
-    class DummyServiceImpl : Services.INOAAService
+    class NOAADummyService : Services.INOAAService
     {
         public async Task<IEnumerable<WeatherDataModel>> GetWeatherData(DateTime StartDate, DateTime EndDate, double DesiredTemperature, bool OnlyUnitedStates)
         {
