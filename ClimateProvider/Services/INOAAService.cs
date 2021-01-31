@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClimateProvider.Services
 {
-    interface INOAAService
+    public interface INOAAService
     {
     }
 }
