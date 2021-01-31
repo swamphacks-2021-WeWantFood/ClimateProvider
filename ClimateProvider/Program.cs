@@ -34,7 +34,7 @@ namespace ClimateProvider
         [FunctionName("GetCities")]
         public static async Task<IActionResult> RunCities(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-        ILogger log, INOAAService noaaService)
+        ILogger log)//, INOAAService noaaService)
         {
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
