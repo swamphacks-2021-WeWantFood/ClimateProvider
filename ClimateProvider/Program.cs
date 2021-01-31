@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace ClimateProvider
 {
-    public static class Function1
+    public static class Program
     {
-        [FunctionName("Function1")]
+        [FunctionName("ClimateProvider")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
